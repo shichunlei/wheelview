@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/wheel_city"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="#FFFFFF"
+    android:orientation="horizontal"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp" >
+
+    <com.chingtech.wheelcity.WheelCityView
+        android:id="@+id/wheelcity_country"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1" />
+
+    <com.chingtech.wheelcity.WheelCityView
+        android:id="@+id/wheelcity_city"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1" />
+
+    <com.chingtech.wheelcity.WheelCityView
+        android:id="@+id/wheelcity_ccity"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
