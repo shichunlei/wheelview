@@ -2,7 +2,10 @@
 
 滚轮
 
-![image](Screenshot_2017-08-29-15-07-50-279_com.chingtech.)
+![image](https://github.com/shichunlei/wheelview/blob/master/images/Screenshot_2017-08-29-15-07-50-279_com.chingtech..png)
+![image](https://github.com/shichunlei/wheelview/blob/master/images/Screenshot_2017-08-29-15-08-00-422_com.chingtech..png)
+![image](https://github.com/shichunlei/wheelview/blob/master/images/Screenshot_2017-08-29-15-08-07-856_com.chingtech..png)
+![image](https://github.com/shichunlei/wheelview/blob/master/images/Screenshot_2017-08-29-15-08-17-286_com.chingtech..png)
 
 To get a Git project into your build:
 
