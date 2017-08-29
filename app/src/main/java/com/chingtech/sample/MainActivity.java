@@ -3,10 +3,10 @@ package com.chingtech.sample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
+import android.widget.Toast;
 import com.chingtech.data.CitiesData;
 import com.chingtech.pop.PopupWindowCheckbox;
 import com.chingtech.pop.PopupWindowTimer;
@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Created by leo on 2016/10/28.
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private PopupWindowCheckbox popCheckBox;
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PopupWindowTimer popTime;//时间:年|月|日
 
     private String provinceArray[] = CitiesData.PROVINCES;
-    private String cityArray[][] = CitiesData.CITIES;
+    private String cityArray[][]   = CitiesData.CITIES;
     private String areaArray[][][] = CitiesData.DISTRICTS;
 
     private PopupWindowWheel pwCity;
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onSelect(String text) {
-                Log.i("TAG",text);
+                showToast(text);
             }
         });
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         popText.setOnTextSelectListener(new PopupWindowWheel.OnTextSelectListener() {
             @Override
             public void onTextSelect(int index) {
-                Log.i("TAG",provinceArray[index]);
+                showToast(provinceArray[index]);
             }
         });
 
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         popTime.setOnTimeSelectListener(new PopupWindowTimer.OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date) {
-                Log.i("TAG",getYMD(date));
+                showToast(getYMD(date));
             }
         });
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pwCity.setOnCitySelectListener(new PopupWindowWheel.OnCitySelectListener() {
             @Override
             public void onCitySelect(String city) {
-                Log.i("TAG", city.replace(" | ", " "));
+                showToast(city.replace(" | ", " "));
             }
         });
 
@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_text:
-                popText.showTxtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0, null, provinceArray);
+                popText.showTxtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
+                                        null, provinceArray);
                 break;
 
             case R.id.btn_cb:
@@ -87,11 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btn_city:
-                pwCity.showCityLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0, provinceArray, cityArray, areaArray);
+                pwCity.showCityLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
+                                        provinceArray, cityArray, areaArray);
                 break;
 
             case R.id.btn_time:
-                popTime.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0, new Date()); // 显示时间选择器
+                popTime.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
+                                       new Date()); // 显示时间选择器
                 break;
         }
     }
@@ -100,10 +103,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return formater.get().format(date);
     }
 
-    public final static ThreadLocal<SimpleDateFormat> formater = new ThreadLocal<SimpleDateFormat>() {
+    public final static ThreadLocal<SimpleDateFormat> formater
+            = new ThreadLocal<SimpleDateFormat>() {
         @Override
         protected SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy年MM月dd日");
         }
     };
+
+    private void showToast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
 }
