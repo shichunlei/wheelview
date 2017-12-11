@@ -13,7 +13,6 @@
         android:gravity="center"
         android:text=""
         android:textColor="#F000"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
 </LinearLayout>

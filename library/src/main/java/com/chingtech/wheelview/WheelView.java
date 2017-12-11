@@ -68,7 +68,7 @@ public class WheelView extends View {
 	private static final int ADDITIONAL_ITEM_HEIGHT = 15;
 
 	/** 文字字号 */
-	public int TEXT_SIZE;
+	public int TEXT_SIZE = 30;
 
 	/** 顶部和底部项目抵�?隐藏) */
 	private final int ITEM_OFFSET = TEXT_SIZE / 5;

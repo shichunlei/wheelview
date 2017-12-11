@@ -4,13 +4,13 @@
     android:layout_height="fill_parent"
     android:background="@color/pop_bg_color"
     android:gravity="bottom"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white"
-        android:gravity="center_vertical" >
+        android:gravity="center_vertical">
 
         <Button
             android:id="@+id/btnCancel"
@@ -39,11 +39,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <include
-            android:id="@+id/wheel_city"
-            layout="@layout/wheel_city" />
+            layout="@layout/wheel_city"
+            android:id="@+id/wheel_city" />
 
         <View
             android:layout_width="match_parent"

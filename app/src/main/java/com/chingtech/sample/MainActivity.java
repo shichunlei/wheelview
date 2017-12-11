@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         popCheckBox = new PopupWindowCheckbox(this, provinceArray);
+        popCheckBox.setSeparator(",");
         popCheckBox.setOnSelectListener(new PopupWindowCheckbox.OnSelectListener() {
 
             @Override
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         popText = new PopupWindowWheel(this, PopupWindowWheel.WheelType.TEXT);// 设置TEXT格式
-        popText.setText(null, provinceArray);
+        popText.setText(provinceArray);
         popText.setOnTextSelectListener(new PopupWindowWheel.OnTextSelectListener() {
             @Override
             public void onTextSelect(int index) {
@@ -66,35 +67,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         pwCity = new PopupWindowWheel(this, PopupWindowWheel.WheelType.CITY);// 设置TEXT格式
+        pwCity.setCityData(provinceArray, cityArray, areaArray);
         pwCity.setOnCitySelectListener(new PopupWindowWheel.OnCitySelectListener() {
             @Override
             public void onCitySelect(String city) {
                 showToast(city.replace(" | ", " "));
             }
         });
-
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_text:
-                popText.showTxtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
-                                        null, provinceArray);
+                popText.showText();
                 break;
 
             case R.id.btn_cb:
-                popCheckBox.showLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                popCheckBox.show();
                 break;
 
             case R.id.btn_city:
-                pwCity.showCityLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
-                                        provinceArray, cityArray, areaArray);
+                pwCity.showCity();
                 break;
 
             case R.id.btn_time:
-                popTime.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0,
-                                       new Date()); // 显示时间选择器
+                popTime.show(); // 显示时间选择器
                 break;
         }
     }
