@@ -27,5 +27,5 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	    compile 'com.github.shichunlei:wheelview:1.3.0'
+	    compile 'com.github.shichunlei:wheelview:1.3.1'
 	}
