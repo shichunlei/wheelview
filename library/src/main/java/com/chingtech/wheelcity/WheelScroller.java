@@ -19,6 +19,7 @@
 
 package com.chingtech.wheelcity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -196,6 +197,7 @@ public class WheelScroller {
     }
     
     // animation handler
+    @SuppressLint("HandlerLeak")
     private Handler animationHandler = new Handler() {
         public void handleMessage(Message msg) {
             scroller.computeScrollOffset();

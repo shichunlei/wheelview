@@ -1,6 +1,5 @@
 package com.chingtech.wheel;
 
-import android.util.Log;
 import android.view.View;
 
 import com.chingtech.wheelview.R;

@@ -1,5 +1,6 @@
 package com.chingtech.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,11 @@ import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
 
-    ViewHolder holder;
+    private ViewHolder holder;
 
     private String[] items;
 
+    @SuppressLint("UseSparseArrays")
     HashMap<Integer, View> map = new HashMap<>();
 
     // 用来控制CheckBox的选中状况

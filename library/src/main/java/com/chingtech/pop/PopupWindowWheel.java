@@ -36,8 +36,6 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
     private WheelCity    wheelCity;
     private WheelCascade wheelCascade;
 
-    private View btnSubmit, btnCancel;
-
     private ArrayList<String> items;
     private String[]          array;
 
@@ -54,8 +52,6 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
     private OnCitySelectListener    selectCityListener;
     private OnCascadeSelectListener selectCascadeListener;
 
-    private View pickerview;
-
     @SuppressWarnings("deprecation")
     public PopupWindowWheel(Context context, WheelType wheelType) {
         super(context);
@@ -67,6 +63,7 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
 
         LayoutInflater mLayoutInflater = LayoutInflater.from(context);
 
+        View pickerview;
         if (wheelType == WheelType.TEXT) {
             rootView = mLayoutInflater.inflate(R.layout.popup_window_text, null);
             pickerview = rootView.findViewById(R.id.wheel_text);
@@ -82,9 +79,9 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
         }
 
         // -----确定和取消按钮
-        btnSubmit = rootView.findViewById(R.id.btnSubmit);
+        View btnSubmit = rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setTag(TAG_SUBMIT);
-        btnCancel = rootView.findViewById(R.id.btnCancel);
+        View btnCancel = rootView.findViewById(R.id.btnCancel);
         btnCancel.setTag(TAG_CANCEL);
         btnSubmit.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -164,14 +161,10 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
             } else if (selectCascadeListener != null) {
                 // String cascade = WheelCascade.getCascadeTxt();
 
-                int index  = WheelCascade.getFirstIndex();
-                int index1 = WheelCascade.getSecondIndex();
+                int firstIndex  = WheelCascade.getFirstIndex();
+                int secondIndex = WheelCascade.getSecondIndex();
 
-                List<Integer> a = new ArrayList<>();
-                a.add(index);
-                a.add(index1);
-
-                selectCascadeListener.onCascadeSelect(a);
+                selectCascadeListener.onCascadeSelect(firstIndex, secondIndex);
             }
             dismiss();
             return;
@@ -195,7 +188,7 @@ public class PopupWindowWheel extends PopupWindow implements OnClickListener {
     }
 
     public interface OnCascadeSelectListener {
-        void onCascadeSelect(List<Integer> s);
+        void onCascadeSelect(int first, int second);
     }
 
     public void setOnCascadeSelectListener(OnCascadeSelectListener selectCascadeListener) {

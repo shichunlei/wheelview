@@ -1,24 +1,49 @@
 package com.chingtech.sample;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 
 import android.widget.Toast;
+import com.chingtech.AddressSelector;
 import com.chingtech.data.CitiesData;
+import com.chingtech.model.City;
+import com.chingtech.model.County;
+import com.chingtech.model.Province;
+import com.chingtech.model.Street;
 import com.chingtech.pop.PopupWindowCheckbox;
 import com.chingtech.pop.PopupWindowTimer;
 import com.chingtech.pop.PopupWindowWheel;
 
+import com.chingtech.widget.BottomDialog;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by leo on 2016/10/28.
+ * <p>
+ * *    ***********    ***********    **
+ * *    ***********    ***********    **
+ * *    **             **             **
+ * *    **             **             **
+ * *    **             **             **
+ * *    ***********    **             **
+ * *    ***********    **             **
+ * *             **    **             **
+ * *             **    **             **
+ * *             **    **             **
+ * *    ***********    ***********    ***********
+ * *    ***********    ***********    ***********
+ * </p>
+ * wheelview
+ * Package com.chingtech.sample
+ * Description:
+ * Created by 师春雷
+ * Created at 2016/10/28 上午8:03
  */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity
+        implements View.OnClickListener, AddressSelector.OnAddressSelectedListener {
 
     private PopupWindowCheckbox popCheckBox;
 
@@ -31,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String areaArray[][][] = CitiesData.DISTRICTS;
 
     private PopupWindowWheel pwCity;
+
+    private PopupWindowWheel pwDouble;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +101,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showToast(city.replace(" | ", " "));
             }
         });
+
+        pwDouble = new PopupWindowWheel(this, PopupWindowWheel.WheelType.CASCADE);// 设置CASCADE格式
+        pwDouble.setOnCascadeSelectListener(new PopupWindowWheel.OnCascadeSelectListener() {
+            @Override
+            public void onCascadeSelect(int first, int second) {
+                showToast(provinceArray[first] + "[[[[[[[[[[[[[[" + cityArray[first][second]);
+            }
+        });
     }
 
     @Override
@@ -94,6 +129,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_time:
                 popTime.show(); // 显示时间选择器
                 break;
+
+            case R.id.btn_double:
+                pwDouble.showCascade(provinceArray, cityArray); // 显示时间选择器
+                break;
+
+            case R.id.btn_address:
+                BottomDialog dialog = new BottomDialog(MainActivity.this);
+                dialog.setOnAddressSelectedListener(MainActivity.this);
+                dialog.show();
+                break;
         }
     }
 
@@ -103,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final static ThreadLocal<SimpleDateFormat> formater
             = new ThreadLocal<SimpleDateFormat>() {
+        @SuppressLint("SimpleDateFormat")
         @Override
         protected SimpleDateFormat initialValue() {
             return new SimpleDateFormat("yyyy年MM月dd日");
@@ -111,5 +157,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        String s = (province == null ? "" : province.getName()) + (city == null ? "" :
+                "\n" + city.getName()) + (county == null ? "" : "\n" + county.getName()) + (
+                street == null ? "" : "\n" + street.getName());
+
+        showToast(s);
     }
 }

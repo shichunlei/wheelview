@@ -23,7 +23,6 @@ public class PopupWindowCheckbox extends PopupWindow
         implements OnClickListener, OnItemClickListener {
 
     private View rootView; // 总的布局
-    private View btnSubmit, btnCancel;
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
 
@@ -36,7 +35,7 @@ public class PopupWindowCheckbox extends PopupWindow
 
     private OnSelectListener selectListener;
 
-    List<Integer> listItemID = new ArrayList<>();
+    private List<Integer> listItemID = new ArrayList<>();
 
     @SuppressWarnings("deprecation")
     public PopupWindowCheckbox(Context context, String[] items) {
@@ -58,9 +57,9 @@ public class PopupWindowCheckbox extends PopupWindow
         listView.setOnItemClickListener(this);
 
         // -----确定和取消按钮
-        btnSubmit = rootView.findViewById(R.id.btnSubmit);
+        View btnSubmit = rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setTag(TAG_SUBMIT);
-        btnCancel = rootView.findViewById(R.id.btnCancel);
+        View btnCancel = rootView.findViewById(R.id.btnCancel);
         btnCancel.setTag(TAG_CANCEL);
         btnSubmit.setOnClickListener(this);
         btnCancel.setOnClickListener(this);

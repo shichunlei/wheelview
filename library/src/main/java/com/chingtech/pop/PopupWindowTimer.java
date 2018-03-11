@@ -34,14 +34,10 @@ public class PopupWindowTimer extends PopupWindow implements OnClickListener {
 
     private WheelTime wheelTime;
 
-    private View btnSubmit, btnCancel;
-
     private static final String TAG_SUBMIT = "submit";
     private static final String TAG_CANCEL = "cancel";
 
     private OnTimeSelectListener selectTimeListener;
-
-    private View pickerview;
 
     private Date date = null;
 
@@ -60,7 +56,7 @@ public class PopupWindowTimer extends PopupWindow implements OnClickListener {
 
         rootView = mLayoutInflater.inflate(R.layout.popup_window_time, null);
         // ----时间转轮
-        pickerview = rootView.findViewById(R.id.timepicker);
+        View pickerview = rootView.findViewById(R.id.timepicker);
         wheelTime = new WheelTime(pickerview, type);
         wheelTime.screenheight = screenInfo.getHeight();
 
@@ -75,9 +71,9 @@ public class PopupWindowTimer extends PopupWindow implements OnClickListener {
         wheelTime.setPicker(year, month, day, hours, minute);
 
         // -----确定和取消按钮
-        btnSubmit = rootView.findViewById(R.id.btnSubmit);
+        View btnSubmit = rootView.findViewById(R.id.btnSubmit);
         btnSubmit.setTag(TAG_SUBMIT);
-        btnCancel = rootView.findViewById(R.id.btnCancel);
+        View btnCancel = rootView.findViewById(R.id.btnCancel);
         btnCancel.setTag(TAG_CANCEL);
         btnSubmit.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
