@@ -1,6 +1,6 @@
-﻿# wheelviewLibrary
+﻿# wheelview
 
-滚轮
+滚轮选择器
 
 [![](https://jitpack.io/v/shichunlei/wheelview.svg)](https://jitpack.io/#shichunlei/wheelview)
 
@@ -27,5 +27,5 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	    compile 'com.github.shichunlei:wheelview:1.3.1'
+	    compile 'com.github.shichunlei:wheelview:1.3.2'
 	}
